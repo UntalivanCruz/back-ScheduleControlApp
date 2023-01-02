@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log
+dist/
+# Cache used by TypeScript's incremental build
+*.tsbuildinfo
+
+Dockerfile
+docker-compose.yml
+.git
+.gitignore
+.vscode
+README.md
