@@ -1,9 +1,8 @@
-node_modules
 npm-debug.log
 dist/
+node_modules/
 # Cache used by TypeScript's incremental build
 *.tsbuildinfo
-
 Dockerfile
 docker-compose.yml
 .git

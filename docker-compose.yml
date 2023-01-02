@@ -2,14 +2,16 @@ version: '3.1'
 
 services:
   db:
-    container_name: MongoDB
+    container_name: ${DB_HOST}
     image: mongo:6.0.3
     restart: always
+    volumes:
+      - mongo-db:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-    ports:
-     - 27017:27017
+    #ports:
+    #  - ${DB_PORT}:${DB_PORT}
   app:
     depends_on:
       - db
@@ -18,14 +20,23 @@ services:
       context: .
       target: ${STAGE}
       dockerfile: Dockerfile
-      
-      # command: yarn start:dev
     volumes:
-        - .:/home/node/app
-        - /home/node/app/node_modules
+        - .:/app/
+        - /app/node_modules
+        - /app/dist
     ports:
       - ${PORT}:${PORT}
     environment:
       PORT: ${PORT}
       HOST: ${HOST}
+      URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${DB_HOST}:${DB_PORT}
+      DB_HOST: ${DB_HOST}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      DB_NAME: ${DB_NAME}
+      DB_PORT: ${DB_PORT}
     restart: always
+
+volumes:
+  mongo-db:
+    external: true
