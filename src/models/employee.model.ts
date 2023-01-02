@@ -34,7 +34,7 @@ export class Employee extends Entity {
 
   @property({
     type: 'string',
-    default: None,
+    default: 'none',
   })
   gender?: string;
 
