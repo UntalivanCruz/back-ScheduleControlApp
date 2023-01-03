@@ -19,11 +19,6 @@ export class EmployeePositions extends Entity {
   name: string;
 
   @property({
-    type: 'string',
-    required: true,
-  })
-  idDeparment: string;
-  @property({
     type: 'boolean',
     default: true,
   })
