@@ -8,3 +8,5 @@ export * from './employee-positions-employee.controller';
 export * from './employee-employee-positions.controller';
 export * from './employee-attendance.controller';
 export * from './attendance-employee.controller';
+export * from './department-employee-positions.controller';
+export * from './employee-positions-department.controller';
