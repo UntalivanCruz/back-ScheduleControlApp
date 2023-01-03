@@ -1,0 +1,5409 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "backend-schedule-control",
+    "version": "0.0.1",
+    "description": "Backend Schedule Control Application",
+    "contact": {}
+  },
+  "paths": {
+    "/attendances/count": {
+      "get": {
+        "x-controller-name": "AttendanceController",
+        "x-operation-name": "count",
+        "tags": [
+          "AttendanceController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Attendance model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Attendance.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Attendance>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "AttendanceController.count"
+      }
+    },
+    "/attendances/{id}/employee": {
+      "get": {
+        "x-controller-name": "AttendanceEmployeeController",
+        "x-operation-name": "getEmployee",
+        "tags": [
+          "AttendanceEmployeeController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee belonging to Attendance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Employee"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "AttendanceEmployeeController.getEmployee"
+      }
+    },
+    "/attendances/{id}": {
+      "put": {
+        "x-controller-name": "AttendanceController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "AttendanceController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Attendance PUT success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Attendance"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "AttendanceController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "AttendanceController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "AttendanceController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Attendance PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttendancePartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "AttendanceController.updateById"
+      },
+      "get": {
+        "x-controller-name": "AttendanceController",
+        "x-operation-name": "findById",
+        "tags": [
+          "AttendanceController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Attendance model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AttendanceWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Attendance.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "AttendanceController.findById"
+      },
+      "delete": {
+        "x-controller-name": "AttendanceController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "AttendanceController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Attendance DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "AttendanceController.deleteById"
+      }
+    },
+    "/attendances": {
+      "post": {
+        "x-controller-name": "AttendanceController",
+        "x-operation-name": "create",
+        "tags": [
+          "AttendanceController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Attendance model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Attendance"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewAttendance"
+              }
+            }
+          }
+        },
+        "operationId": "AttendanceController.create"
+      },
+      "patch": {
+        "x-controller-name": "AttendanceController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "AttendanceController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Attendance PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Attendance.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Attendance>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttendancePartial"
+              }
+            }
+          }
+        },
+        "operationId": "AttendanceController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "AttendanceController",
+        "x-operation-name": "find",
+        "tags": [
+          "AttendanceController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Attendance model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AttendanceWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Attendance.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "AttendanceController.find"
+      }
+    },
+    "/departments/count": {
+      "get": {
+        "x-controller-name": "DepartmentController",
+        "x-operation-name": "count",
+        "tags": [
+          "DepartmentController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Department model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Department.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Department>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "DepartmentController.count"
+      }
+    },
+    "/departments/{id}/employee-positions": {
+      "post": {
+        "x-controller-name": "DepartmentEmployeePositionsController",
+        "x-operation-name": "create",
+        "tags": [
+          "DepartmentEmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Department model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeePositions"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewEmployeePositionsInDepartment"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "DepartmentEmployeePositionsController.create"
+      },
+      "patch": {
+        "x-controller-name": "DepartmentEmployeePositionsController",
+        "x-operation-name": "patch",
+        "tags": [
+          "DepartmentEmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Department.EmployeePositions PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "EmployeePositions.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<EmployeePositions>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeePositionsPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "DepartmentEmployeePositionsController.patch"
+      },
+      "get": {
+        "x-controller-name": "DepartmentEmployeePositionsController",
+        "x-operation-name": "find",
+        "tags": [
+          "DepartmentEmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Department has many EmployeePositions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeePositions"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "DepartmentEmployeePositionsController.find"
+      },
+      "delete": {
+        "x-controller-name": "DepartmentEmployeePositionsController",
+        "x-operation-name": "delete",
+        "tags": [
+          "DepartmentEmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Department.EmployeePositions DELETE success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "EmployeePositions.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<EmployeePositions>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "DepartmentEmployeePositionsController.delete"
+      }
+    },
+    "/departments/{id}": {
+      "put": {
+        "x-controller-name": "DepartmentController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "DepartmentController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Department PUT success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Department"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "DepartmentController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "DepartmentController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "DepartmentController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Department PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DepartmentPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "DepartmentController.updateById"
+      },
+      "get": {
+        "x-controller-name": "DepartmentController",
+        "x-operation-name": "findById",
+        "tags": [
+          "DepartmentController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Department model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DepartmentWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Department.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "DepartmentController.findById"
+      },
+      "delete": {
+        "x-controller-name": "DepartmentController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "DepartmentController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Department DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "DepartmentController.deleteById"
+      }
+    },
+    "/departments": {
+      "post": {
+        "x-controller-name": "DepartmentController",
+        "x-operation-name": "create",
+        "tags": [
+          "DepartmentController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Department model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Department"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewDepartment"
+              }
+            }
+          }
+        },
+        "operationId": "DepartmentController.create"
+      },
+      "patch": {
+        "x-controller-name": "DepartmentController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "DepartmentController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Department PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Department.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Department>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DepartmentPartial"
+              }
+            }
+          }
+        },
+        "operationId": "DepartmentController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "DepartmentController",
+        "x-operation-name": "find",
+        "tags": [
+          "DepartmentController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Department model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DepartmentWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Department.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "DepartmentController.find"
+      }
+    },
+    "/employee-positions/count": {
+      "get": {
+        "x-controller-name": "EmployeePositionsController",
+        "x-operation-name": "count",
+        "tags": [
+          "EmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "EmployeePositions model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "EmployeePositions.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<EmployeePositions>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "EmployeePositionsController.count"
+      }
+    },
+    "/employee-positions/{id}/department": {
+      "get": {
+        "x-controller-name": "EmployeePositionsDepartmentController",
+        "x-operation-name": "getDepartment",
+        "tags": [
+          "EmployeePositionsDepartmentController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Department belonging to EmployeePositions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Department"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "EmployeePositionsDepartmentController.getDepartment"
+      }
+    },
+    "/employee-positions/{id}/employees": {
+      "post": {
+        "x-controller-name": "EmployeePositionsEmployeeController",
+        "x-operation-name": "create",
+        "tags": [
+          "EmployeePositionsEmployeeController"
+        ],
+        "responses": {
+          "200": {
+            "description": "EmployeePositions model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewEmployeeInEmployeePositions"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "EmployeePositionsEmployeeController.create"
+      },
+      "patch": {
+        "x-controller-name": "EmployeePositionsEmployeeController",
+        "x-operation-name": "patch",
+        "tags": [
+          "EmployeePositionsEmployeeController"
+        ],
+        "responses": {
+          "200": {
+            "description": "EmployeePositions.Employee PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Employee.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Employee>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeePartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "EmployeePositionsEmployeeController.patch"
+      },
+      "get": {
+        "x-controller-name": "EmployeePositionsEmployeeController",
+        "x-operation-name": "find",
+        "tags": [
+          "EmployeePositionsEmployeeController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of EmployeePositions has many Employee",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Employee"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "EmployeePositionsEmployeeController.find"
+      },
+      "delete": {
+        "x-controller-name": "EmployeePositionsEmployeeController",
+        "x-operation-name": "delete",
+        "tags": [
+          "EmployeePositionsEmployeeController"
+        ],
+        "responses": {
+          "200": {
+            "description": "EmployeePositions.Employee DELETE success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Employee.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Employee>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "EmployeePositionsEmployeeController.delete"
+      }
+    },
+    "/employee-positions/{id}/workshift": {
+      "get": {
+        "x-controller-name": "EmployeePositionsWorkshiftController",
+        "x-operation-name": "getWorkshift",
+        "tags": [
+          "EmployeePositionsWorkshiftController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Workshift belonging to EmployeePositions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Workshift"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "EmployeePositionsWorkshiftController.getWorkshift"
+      }
+    },
+    "/employee-positions/{id}": {
+      "put": {
+        "x-controller-name": "EmployeePositionsController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "EmployeePositionsController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "EmployeePositions PUT success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeePositions"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "EmployeePositionsController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "EmployeePositionsController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "EmployeePositionsController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "EmployeePositions PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeePositionsPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "EmployeePositionsController.updateById"
+      },
+      "get": {
+        "x-controller-name": "EmployeePositionsController",
+        "x-operation-name": "findById",
+        "tags": [
+          "EmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "EmployeePositions model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeePositionsWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeePositions.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "EmployeePositionsController.findById"
+      },
+      "delete": {
+        "x-controller-name": "EmployeePositionsController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "EmployeePositionsController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "EmployeePositions DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "EmployeePositionsController.deleteById"
+      }
+    },
+    "/employee-positions": {
+      "post": {
+        "x-controller-name": "EmployeePositionsController",
+        "x-operation-name": "create",
+        "tags": [
+          "EmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "EmployeePositions model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeePositions"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewEmployeePositions"
+              }
+            }
+          }
+        },
+        "operationId": "EmployeePositionsController.create"
+      },
+      "patch": {
+        "x-controller-name": "EmployeePositionsController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "EmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "EmployeePositions PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "EmployeePositions.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<EmployeePositions>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeePositionsPartial"
+              }
+            }
+          }
+        },
+        "operationId": "EmployeePositionsController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "EmployeePositionsController",
+        "x-operation-name": "find",
+        "tags": [
+          "EmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of EmployeePositions model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeePositionsWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeePositions.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "EmployeePositionsController.find"
+      }
+    },
+    "/employees/count": {
+      "get": {
+        "x-controller-name": "EmployeeController",
+        "x-operation-name": "count",
+        "tags": [
+          "EmployeeController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Employee.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Employee>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "EmployeeController.count"
+      }
+    },
+    "/employees/{id}/attendances": {
+      "post": {
+        "x-controller-name": "EmployeeAttendanceController",
+        "x-operation-name": "create",
+        "tags": [
+          "EmployeeAttendanceController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Attendance"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewAttendanceInEmployee"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "EmployeeAttendanceController.create"
+      },
+      "patch": {
+        "x-controller-name": "EmployeeAttendanceController",
+        "x-operation-name": "patch",
+        "tags": [
+          "EmployeeAttendanceController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee.Attendance PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Attendance.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Attendance>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AttendancePartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "EmployeeAttendanceController.patch"
+      },
+      "get": {
+        "x-controller-name": "EmployeeAttendanceController",
+        "x-operation-name": "find",
+        "tags": [
+          "EmployeeAttendanceController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Employee has many Attendance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Attendance"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "EmployeeAttendanceController.find"
+      },
+      "delete": {
+        "x-controller-name": "EmployeeAttendanceController",
+        "x-operation-name": "delete",
+        "tags": [
+          "EmployeeAttendanceController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee.Attendance DELETE success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Attendance.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Attendance>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "EmployeeAttendanceController.delete"
+      }
+    },
+    "/employees/{id}/employee-positions": {
+      "get": {
+        "x-controller-name": "EmployeeEmployeePositionsController",
+        "x-operation-name": "getEmployeePositions",
+        "tags": [
+          "EmployeeEmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "EmployeePositions belonging to Employee",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeePositions"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "EmployeeEmployeePositionsController.getEmployeePositions"
+      }
+    },
+    "/employees/{id}": {
+      "put": {
+        "x-controller-name": "EmployeeController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "EmployeeController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Employee PUT success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Employee"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "EmployeeController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "EmployeeController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "EmployeeController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Employee PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeePartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "EmployeeController.updateById"
+      },
+      "get": {
+        "x-controller-name": "EmployeeController",
+        "x-operation-name": "findById",
+        "tags": [
+          "EmployeeController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeeWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "EmployeeController.findById"
+      },
+      "delete": {
+        "x-controller-name": "EmployeeController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "EmployeeController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Employee DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "EmployeeController.deleteById"
+      }
+    },
+    "/employees": {
+      "post": {
+        "x-controller-name": "EmployeeController",
+        "x-operation-name": "create",
+        "tags": [
+          "EmployeeController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewEmployee"
+              }
+            }
+          }
+        },
+        "operationId": "EmployeeController.create"
+      },
+      "patch": {
+        "x-controller-name": "EmployeeController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "EmployeeController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Employee PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Employee.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Employee>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeePartial"
+              }
+            }
+          }
+        },
+        "operationId": "EmployeeController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "EmployeeController",
+        "x-operation-name": "find",
+        "tags": [
+          "EmployeeController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Employee model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeeWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Employee.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "EmployeeController.find"
+      }
+    },
+    "/schedules/count": {
+      "get": {
+        "x-controller-name": "ScheduleController",
+        "x-operation-name": "count",
+        "tags": [
+          "ScheduleController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Schedule model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Schedule.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Schedule>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ScheduleController.count"
+      }
+    },
+    "/schedules/{id}/workshift": {
+      "get": {
+        "x-controller-name": "ScheduleWorkshiftController",
+        "x-operation-name": "getWorkshift",
+        "tags": [
+          "ScheduleWorkshiftController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Workshift belonging to Schedule",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Workshift"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "ScheduleWorkshiftController.getWorkshift"
+      }
+    },
+    "/schedules/{id}": {
+      "put": {
+        "x-controller-name": "ScheduleController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "ScheduleController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Schedule PUT success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schedule"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "ScheduleController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "ScheduleController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "ScheduleController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Schedule PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SchedulePartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "ScheduleController.updateById"
+      },
+      "get": {
+        "x-controller-name": "ScheduleController",
+        "x-operation-name": "findById",
+        "tags": [
+          "ScheduleController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Schedule model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ScheduleController.findById"
+      },
+      "delete": {
+        "x-controller-name": "ScheduleController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "ScheduleController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Schedule DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "ScheduleController.deleteById"
+      }
+    },
+    "/schedules": {
+      "post": {
+        "x-controller-name": "ScheduleController",
+        "x-operation-name": "create",
+        "tags": [
+          "ScheduleController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Schedule model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewSchedule"
+              }
+            }
+          }
+        },
+        "operationId": "ScheduleController.create"
+      },
+      "patch": {
+        "x-controller-name": "ScheduleController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "ScheduleController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Schedule PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Schedule.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Schedule>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SchedulePartial"
+              }
+            }
+          }
+        },
+        "operationId": "ScheduleController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "ScheduleController",
+        "x-operation-name": "find",
+        "tags": [
+          "ScheduleController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Schedule model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ScheduleWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "ScheduleController.find"
+      }
+    },
+    "/workshifts/count": {
+      "get": {
+        "x-controller-name": "WorkshiftController",
+        "x-operation-name": "count",
+        "tags": [
+          "WorkshiftController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Workshift model count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Workshift.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Workshift>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "WorkshiftController.count"
+      }
+    },
+    "/workshifts/{id}/employee-positions": {
+      "post": {
+        "x-controller-name": "WorkshiftEmployeePositionsController",
+        "x-operation-name": "create",
+        "tags": [
+          "WorkshiftEmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Workshift model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmployeePositions"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewEmployeePositionsInWorkshift"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "WorkshiftEmployeePositionsController.create"
+      },
+      "patch": {
+        "x-controller-name": "WorkshiftEmployeePositionsController",
+        "x-operation-name": "patch",
+        "tags": [
+          "WorkshiftEmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Workshift.EmployeePositions PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "EmployeePositions.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<EmployeePositions>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EmployeePositionsPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "WorkshiftEmployeePositionsController.patch"
+      },
+      "get": {
+        "x-controller-name": "WorkshiftEmployeePositionsController",
+        "x-operation-name": "find",
+        "tags": [
+          "WorkshiftEmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Workshift has many EmployeePositions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/EmployeePositions"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "WorkshiftEmployeePositionsController.find"
+      },
+      "delete": {
+        "x-controller-name": "WorkshiftEmployeePositionsController",
+        "x-operation-name": "delete",
+        "tags": [
+          "WorkshiftEmployeePositionsController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Workshift.EmployeePositions DELETE success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "EmployeePositions.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<EmployeePositions>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "WorkshiftEmployeePositionsController.delete"
+      }
+    },
+    "/workshifts/{id}/schedules": {
+      "post": {
+        "x-controller-name": "WorkshiftScheduleController",
+        "x-operation-name": "create",
+        "tags": [
+          "WorkshiftScheduleController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Workshift model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schedule"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewScheduleInWorkshift"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "WorkshiftScheduleController.create"
+      },
+      "patch": {
+        "x-controller-name": "WorkshiftScheduleController",
+        "x-operation-name": "patch",
+        "tags": [
+          "WorkshiftScheduleController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Workshift.Schedule PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Schedule.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Schedule>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SchedulePartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "WorkshiftScheduleController.patch"
+      },
+      "get": {
+        "x-controller-name": "WorkshiftScheduleController",
+        "x-operation-name": "find",
+        "tags": [
+          "WorkshiftScheduleController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Workshift has many Schedule",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Schedule"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "WorkshiftScheduleController.find"
+      },
+      "delete": {
+        "x-controller-name": "WorkshiftScheduleController",
+        "x-operation-name": "delete",
+        "tags": [
+          "WorkshiftScheduleController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Workshift.Schedule DELETE success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Schedule.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Schedule>"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "WorkshiftScheduleController.delete"
+      }
+    },
+    "/workshifts/{id}": {
+      "put": {
+        "x-controller-name": "WorkshiftController",
+        "x-operation-name": "replaceById",
+        "tags": [
+          "WorkshiftController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Workshift PUT success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Workshift"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "WorkshiftController.replaceById"
+      },
+      "patch": {
+        "x-controller-name": "WorkshiftController",
+        "x-operation-name": "updateById",
+        "tags": [
+          "WorkshiftController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Workshift PATCH success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshiftPartial"
+              }
+            }
+          },
+          "x-parameter-index": 1
+        },
+        "operationId": "WorkshiftController.updateById"
+      },
+      "get": {
+        "x-controller-name": "WorkshiftController",
+        "x-operation-name": "findById",
+        "tags": [
+          "WorkshiftController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Workshift model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkshiftWithRelations"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workshift.Filter"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "WorkshiftController.findById"
+      },
+      "delete": {
+        "x-controller-name": "WorkshiftController",
+        "x-operation-name": "deleteById",
+        "tags": [
+          "WorkshiftController"
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "description": "Workshift DELETE success"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "schema": {
+              "type": "string"
+            },
+            "required": true
+          }
+        ],
+        "operationId": "WorkshiftController.deleteById"
+      }
+    },
+    "/workshifts": {
+      "post": {
+        "x-controller-name": "WorkshiftController",
+        "x-operation-name": "create",
+        "tags": [
+          "WorkshiftController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Workshift model instance",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workshift"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewWorkshift"
+              }
+            }
+          }
+        },
+        "operationId": "WorkshiftController.create"
+      },
+      "patch": {
+        "x-controller-name": "WorkshiftController",
+        "x-operation-name": "updateAll",
+        "tags": [
+          "WorkshiftController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Workshift PATCH success count",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/loopback.Count"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "where",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "title": "Workshift.WhereFilter",
+                  "additionalProperties": true,
+                  "x-typescript-type": "@loopback/repository#Where<Workshift>"
+                }
+              }
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WorkshiftPartial"
+              }
+            }
+          }
+        },
+        "operationId": "WorkshiftController.updateAll"
+      },
+      "get": {
+        "x-controller-name": "WorkshiftController",
+        "x-operation-name": "find",
+        "tags": [
+          "WorkshiftController"
+        ],
+        "responses": {
+          "200": {
+            "description": "Array of Workshift model instances",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorkshiftWithRelations"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "filter",
+            "in": "query",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Workshift.Filter1"
+                }
+              }
+            }
+          }
+        ],
+        "operationId": "WorkshiftController.find"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Employee": {
+        "title": "Employee",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "identification": {
+            "type": "string"
+          },
+          "dateBirth": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "nationality": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idEmployeePositions": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "identification",
+          "nationality"
+        ],
+        "additionalProperties": false
+      },
+      "Attendance": {
+        "title": "Attendance",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "day": {
+            "type": "number"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idEmployee": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "date",
+          "day"
+        ],
+        "additionalProperties": false
+      },
+      "NewAttendance": {
+        "title": "NewAttendance",
+        "type": "object",
+        "description": "(tsType: Omit<Attendance, 'id'>, schemaOptions: { title: 'NewAttendance', exclude: [ 'id' ] })",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "day": {
+            "type": "number"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idEmployee": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "date",
+          "day"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Attendance, 'id'>"
+      },
+      "DepartmentWithRelations": {
+        "title": "DepartmentWithRelations",
+        "type": "object",
+        "description": "(tsType: DepartmentWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "employeePositions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmployeePositionsWithRelations"
+            }
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "DepartmentWithRelations"
+      },
+      "ScheduleWithRelations": {
+        "title": "ScheduleWithRelations",
+        "type": "object",
+        "description": "(tsType: ScheduleWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "day": {
+            "type": "number"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idWorkshift": {
+            "type": "string"
+          },
+          "workshift": {
+            "$ref": "#/components/schemas/WorkshiftWithRelations"
+          }
+        },
+        "required": [
+          "day"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "ScheduleWithRelations"
+      },
+      "WorkshiftWithRelations": {
+        "title": "WorkshiftWithRelations",
+        "type": "object",
+        "description": "(tsType: WorkshiftWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "employeePositions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmployeePositionsWithRelations"
+            }
+          },
+          "schedules": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScheduleWithRelations"
+            }
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "WorkshiftWithRelations"
+      },
+      "EmployeePositionsWithRelations": {
+        "title": "EmployeePositionsWithRelations",
+        "type": "object",
+        "description": "(tsType: EmployeePositionsWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "idDeparment": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idDepartment": {
+            "type": "string"
+          },
+          "idWorkshift": {
+            "type": "string"
+          },
+          "employees": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EmployeeWithRelations"
+            }
+          },
+          "Department": {
+            "$ref": "#/components/schemas/DepartmentWithRelations"
+          },
+          "workshift": {
+            "$ref": "#/components/schemas/WorkshiftWithRelations"
+          }
+        },
+        "required": [
+          "name",
+          "idDeparment"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "EmployeePositionsWithRelations"
+      },
+      "EmployeeWithRelations": {
+        "title": "EmployeeWithRelations",
+        "type": "object",
+        "description": "(tsType: EmployeeWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "identification": {
+            "type": "string"
+          },
+          "dateBirth": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "nationality": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idEmployeePositions": {
+            "type": "string"
+          },
+          "EmployeePositions": {
+            "$ref": "#/components/schemas/EmployeePositionsWithRelations"
+          },
+          "attendances": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AttendanceWithRelations"
+            }
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "identification",
+          "nationality"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "EmployeeWithRelations"
+      },
+      "AttendanceWithRelations": {
+        "title": "AttendanceWithRelations",
+        "type": "object",
+        "description": "(tsType: AttendanceWithRelations, schemaOptions: { includeRelations: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "day": {
+            "type": "number"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idEmployee": {
+            "type": "string"
+          },
+          "Employee": {
+            "$ref": "#/components/schemas/EmployeeWithRelations"
+          }
+        },
+        "required": [
+          "date",
+          "day"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "AttendanceWithRelations"
+      },
+      "AttendancePartial": {
+        "title": "AttendancePartial",
+        "type": "object",
+        "description": "(tsType: Partial<Attendance>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "day": {
+            "type": "number"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idEmployee": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Attendance>"
+      },
+      "EmployeePositions": {
+        "title": "EmployeePositions",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "idDeparment": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idDepartment": {
+            "type": "string"
+          },
+          "idWorkshift": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "idDeparment"
+        ],
+        "additionalProperties": false
+      },
+      "NewEmployeePositionsInDepartment": {
+        "title": "NewEmployeePositionsInDepartment",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<EmployeePositions, 'id'>, 'idDepartment'>, schemaOptions: { title: 'NewEmployeePositionsInDepartment', exclude: [ 'id' ], optional: [ 'idDepartment' ] })",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "idDeparment": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idDepartment": {
+            "type": "string"
+          },
+          "idWorkshift": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "idDeparment"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<EmployeePositions, 'id'>, 'idDepartment'>"
+      },
+      "EmployeePositionsPartial": {
+        "title": "EmployeePositionsPartial",
+        "type": "object",
+        "description": "(tsType: Partial<EmployeePositions>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "idDeparment": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idDepartment": {
+            "type": "string"
+          },
+          "idWorkshift": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<EmployeePositions>"
+      },
+      "Department": {
+        "title": "Department",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "NewDepartment": {
+        "title": "NewDepartment",
+        "type": "object",
+        "description": "(tsType: Omit<Department, 'id'>, schemaOptions: { title: 'NewDepartment', exclude: [ 'id' ] })",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Department, 'id'>"
+      },
+      "DepartmentPartial": {
+        "title": "DepartmentPartial",
+        "type": "object",
+        "description": "(tsType: Partial<Department>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Department>"
+      },
+      "NewAttendanceInEmployee": {
+        "title": "NewAttendanceInEmployee",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<Attendance, 'id'>, 'idEmployee'>, schemaOptions: { title: 'NewAttendanceInEmployee', exclude: [ 'id' ], optional: [ 'idEmployee' ] })",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "day": {
+            "type": "number"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idEmployee": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "date",
+          "day"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<Attendance, 'id'>, 'idEmployee'>"
+      },
+      "NewEmployeeInEmployeePositions": {
+        "title": "NewEmployeeInEmployeePositions",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<Employee, 'id'>, 'idEmployeePositions'>, schemaOptions: { title: 'NewEmployeeInEmployeePositions', exclude: [ 'id' ], optional: [ 'idEmployeePositions' ] })",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "identification": {
+            "type": "string"
+          },
+          "dateBirth": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "nationality": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idEmployeePositions": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "identification",
+          "nationality"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<Employee, 'id'>, 'idEmployeePositions'>"
+      },
+      "EmployeePartial": {
+        "title": "EmployeePartial",
+        "type": "object",
+        "description": "(tsType: Partial<Employee>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "identification": {
+            "type": "string"
+          },
+          "dateBirth": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "nationality": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idEmployeePositions": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Employee>"
+      },
+      "Workshift": {
+        "title": "Workshift",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "NewEmployeePositions": {
+        "title": "NewEmployeePositions",
+        "type": "object",
+        "description": "(tsType: Omit<EmployeePositions, 'id'>, schemaOptions: { title: 'NewEmployeePositions', exclude: [ 'id' ] })",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "idDeparment": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idDepartment": {
+            "type": "string"
+          },
+          "idWorkshift": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "idDeparment"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<EmployeePositions, 'id'>"
+      },
+      "NewEmployee": {
+        "title": "NewEmployee",
+        "type": "object",
+        "description": "(tsType: Omit<Employee, 'id'>, schemaOptions: { title: 'NewEmployee', exclude: [ 'id' ] })",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "identification": {
+            "type": "string"
+          },
+          "dateBirth": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "gender": {
+            "type": "string"
+          },
+          "nationality": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idEmployeePositions": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "firstName",
+          "lastName",
+          "identification",
+          "nationality"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Employee, 'id'>"
+      },
+      "Schedule": {
+        "title": "Schedule",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "day": {
+            "type": "number"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idWorkshift": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "day"
+        ],
+        "additionalProperties": false
+      },
+      "NewSchedule": {
+        "title": "NewSchedule",
+        "type": "object",
+        "description": "(tsType: Omit<Schedule, 'id'>, schemaOptions: { title: 'NewSchedule', exclude: [ 'id' ] })",
+        "properties": {
+          "day": {
+            "type": "number"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idWorkshift": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "day"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Schedule, 'id'>"
+      },
+      "SchedulePartial": {
+        "title": "SchedulePartial",
+        "type": "object",
+        "description": "(tsType: Partial<Schedule>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "day": {
+            "type": "number"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idWorkshift": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Schedule>"
+      },
+      "NewEmployeePositionsInWorkshift": {
+        "title": "NewEmployeePositionsInWorkshift",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<EmployeePositions, 'id'>, 'idWorkshift'>, schemaOptions: { title: 'NewEmployeePositionsInWorkshift', exclude: [ 'id' ], optional: [ 'idWorkshift' ] })",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "idDeparment": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idDepartment": {
+            "type": "string"
+          },
+          "idWorkshift": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "name",
+          "idDeparment"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<EmployeePositions, 'id'>, 'idWorkshift'>"
+      },
+      "NewScheduleInWorkshift": {
+        "title": "NewScheduleInWorkshift",
+        "type": "object",
+        "description": "(tsType: @loopback/repository-json-schema#Optional<Omit<Schedule, 'id'>, 'idWorkshift'>, schemaOptions: { title: 'NewScheduleInWorkshift', exclude: [ 'id' ], optional: [ 'idWorkshift' ] })",
+        "properties": {
+          "day": {
+            "type": "number"
+          },
+          "startTime": {
+            "type": "string"
+          },
+          "endTime": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          },
+          "idWorkshift": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "day"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<Schedule, 'id'>, 'idWorkshift'>"
+      },
+      "NewWorkshift": {
+        "title": "NewWorkshift",
+        "type": "object",
+        "description": "(tsType: Omit<Workshift, 'id'>, schemaOptions: { title: 'NewWorkshift', exclude: [ 'id' ] })",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "x-typescript-type": "Omit<Workshift, 'id'>"
+      },
+      "WorkshiftPartial": {
+        "title": "WorkshiftPartial",
+        "type": "object",
+        "description": "(tsType: Partial<Workshift>, schemaOptions: { partial: true })",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "state": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "Partial<Workshift>"
+      },
+      "loopback.Count": {
+        "type": "object",
+        "title": "loopback.Count",
+        "x-typescript-type": "@loopback/repository#Count",
+        "properties": {
+          "count": {
+            "type": "number"
+          }
+        }
+      },
+      "Attendance.ScopeFilter": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            ]
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "Attendance.ScopeFilter"
+      },
+      "Attendance.IncludeFilter.Items": {
+        "title": "Attendance.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string",
+            "enum": [
+              "Employee"
+            ]
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Attendance.ScopeFilter"
+          }
+        }
+      },
+      "Attendance.Filter": {
+        "type": "object",
+        "title": "Attendance.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "date": {
+                    "type": "boolean"
+                  },
+                  "day": {
+                    "type": "boolean"
+                  },
+                  "startTime": {
+                    "type": "boolean"
+                  },
+                  "endTime": {
+                    "type": "boolean"
+                  },
+                  "state": {
+                    "type": "boolean"
+                  },
+                  "idEmployee": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "date",
+                    "day",
+                    "startTime",
+                    "endTime",
+                    "state",
+                    "idEmployee"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Attendance.Fields"
+          },
+          "include": {
+            "title": "Attendance.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Attendance.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Attendance>"
+      },
+      "Attendance.Filter1": {
+        "type": "object",
+        "title": "Attendance.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Attendance.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "date": {
+                    "type": "boolean"
+                  },
+                  "day": {
+                    "type": "boolean"
+                  },
+                  "startTime": {
+                    "type": "boolean"
+                  },
+                  "endTime": {
+                    "type": "boolean"
+                  },
+                  "state": {
+                    "type": "boolean"
+                  },
+                  "idEmployee": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "date",
+                    "day",
+                    "startTime",
+                    "endTime",
+                    "state",
+                    "idEmployee"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Attendance.Fields"
+          },
+          "include": {
+            "title": "Attendance.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Attendance.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Attendance>"
+      },
+      "Department.ScopeFilter": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            ]
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "Department.ScopeFilter"
+      },
+      "Department.IncludeFilter.Items": {
+        "title": "Department.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string",
+            "enum": [
+              "employeePositions"
+            ]
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Department.ScopeFilter"
+          }
+        }
+      },
+      "Department.Filter": {
+        "type": "object",
+        "title": "Department.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "type": "boolean"
+                  },
+                  "state": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "name",
+                    "state"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Department.Fields"
+          },
+          "include": {
+            "title": "Department.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Department.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Department>"
+      },
+      "Department.Filter1": {
+        "type": "object",
+        "title": "Department.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Department.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "type": "boolean"
+                  },
+                  "state": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "name",
+                    "state"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Department.Fields"
+          },
+          "include": {
+            "title": "Department.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Department.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Department>"
+      },
+      "EmployeePositions.ScopeFilter": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            ]
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "EmployeePositions.ScopeFilter"
+      },
+      "EmployeePositions.IncludeFilter.Items": {
+        "title": "EmployeePositions.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string",
+            "enum": [
+              "employees",
+              "Department",
+              "workshift"
+            ]
+          },
+          "scope": {
+            "$ref": "#/components/schemas/EmployeePositions.ScopeFilter"
+          }
+        }
+      },
+      "EmployeePositions.Filter": {
+        "type": "object",
+        "title": "EmployeePositions.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "type": "boolean"
+                  },
+                  "idDeparment": {
+                    "type": "boolean"
+                  },
+                  "state": {
+                    "type": "boolean"
+                  },
+                  "idDepartment": {
+                    "type": "boolean"
+                  },
+                  "idWorkshift": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "name",
+                    "idDeparment",
+                    "state",
+                    "idDepartment",
+                    "idWorkshift"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "EmployeePositions.Fields"
+          },
+          "include": {
+            "title": "EmployeePositions.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/EmployeePositions.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<EmployeePositions>"
+      },
+      "EmployeePositions.Filter1": {
+        "type": "object",
+        "title": "EmployeePositions.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "EmployeePositions.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "type": "boolean"
+                  },
+                  "idDeparment": {
+                    "type": "boolean"
+                  },
+                  "state": {
+                    "type": "boolean"
+                  },
+                  "idDepartment": {
+                    "type": "boolean"
+                  },
+                  "idWorkshift": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "name",
+                    "idDeparment",
+                    "state",
+                    "idDepartment",
+                    "idWorkshift"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "EmployeePositions.Fields"
+          },
+          "include": {
+            "title": "EmployeePositions.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/EmployeePositions.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<EmployeePositions>"
+      },
+      "Employee.ScopeFilter": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            ]
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "Employee.ScopeFilter"
+      },
+      "Employee.IncludeFilter.Items": {
+        "title": "Employee.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string",
+            "enum": [
+              "EmployeePositions",
+              "attendances"
+            ]
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Employee.ScopeFilter"
+          }
+        }
+      },
+      "Employee.Filter": {
+        "type": "object",
+        "title": "Employee.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "firstName": {
+                    "type": "boolean"
+                  },
+                  "lastName": {
+                    "type": "boolean"
+                  },
+                  "identification": {
+                    "type": "boolean"
+                  },
+                  "dateBirth": {
+                    "type": "boolean"
+                  },
+                  "gender": {
+                    "type": "boolean"
+                  },
+                  "nationality": {
+                    "type": "boolean"
+                  },
+                  "state": {
+                    "type": "boolean"
+                  },
+                  "idEmployeePositions": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "firstName",
+                    "lastName",
+                    "identification",
+                    "dateBirth",
+                    "gender",
+                    "nationality",
+                    "state",
+                    "idEmployeePositions"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Employee.Fields"
+          },
+          "include": {
+            "title": "Employee.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Employee.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Employee>"
+      },
+      "Employee.Filter1": {
+        "type": "object",
+        "title": "Employee.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Employee.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "firstName": {
+                    "type": "boolean"
+                  },
+                  "lastName": {
+                    "type": "boolean"
+                  },
+                  "identification": {
+                    "type": "boolean"
+                  },
+                  "dateBirth": {
+                    "type": "boolean"
+                  },
+                  "gender": {
+                    "type": "boolean"
+                  },
+                  "nationality": {
+                    "type": "boolean"
+                  },
+                  "state": {
+                    "type": "boolean"
+                  },
+                  "idEmployeePositions": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "firstName",
+                    "lastName",
+                    "identification",
+                    "dateBirth",
+                    "gender",
+                    "nationality",
+                    "state",
+                    "idEmployeePositions"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Employee.Fields"
+          },
+          "include": {
+            "title": "Employee.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Employee.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Employee>"
+      },
+      "Schedule.ScopeFilter": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            ]
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "Schedule.ScopeFilter"
+      },
+      "Schedule.IncludeFilter.Items": {
+        "title": "Schedule.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string",
+            "enum": [
+              "workshift"
+            ]
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Schedule.ScopeFilter"
+          }
+        }
+      },
+      "Schedule.Filter": {
+        "type": "object",
+        "title": "Schedule.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "day": {
+                    "type": "boolean"
+                  },
+                  "startTime": {
+                    "type": "boolean"
+                  },
+                  "endTime": {
+                    "type": "boolean"
+                  },
+                  "state": {
+                    "type": "boolean"
+                  },
+                  "idWorkshift": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "day",
+                    "startTime",
+                    "endTime",
+                    "state",
+                    "idWorkshift"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Schedule.Fields"
+          },
+          "include": {
+            "title": "Schedule.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Schedule.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Schedule>"
+      },
+      "Schedule.Filter1": {
+        "type": "object",
+        "title": "Schedule.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Schedule.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "day": {
+                    "type": "boolean"
+                  },
+                  "startTime": {
+                    "type": "boolean"
+                  },
+                  "endTime": {
+                    "type": "boolean"
+                  },
+                  "state": {
+                    "type": "boolean"
+                  },
+                  "idWorkshift": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "day",
+                    "startTime",
+                    "endTime",
+                    "state",
+                    "idWorkshift"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Schedule.Fields"
+          },
+          "include": {
+            "title": "Schedule.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Schedule.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Schedule>"
+      },
+      "Workshift.ScopeFilter": {
+        "type": "object",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {},
+                "additionalProperties": true
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              }
+            ]
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {},
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false,
+        "title": "Workshift.ScopeFilter"
+      },
+      "Workshift.IncludeFilter.Items": {
+        "title": "Workshift.IncludeFilter.Items",
+        "type": "object",
+        "properties": {
+          "relation": {
+            "type": "string",
+            "enum": [
+              "employeePositions",
+              "schedules"
+            ]
+          },
+          "scope": {
+            "$ref": "#/components/schemas/Workshift.ScopeFilter"
+          }
+        }
+      },
+      "Workshift.Filter": {
+        "type": "object",
+        "title": "Workshift.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "type": "boolean"
+                  },
+                  "state": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "name",
+                    "state"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Workshift.Fields"
+          },
+          "include": {
+            "title": "Workshift.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Workshift.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Workshift>"
+      },
+      "Workshift.Filter1": {
+        "type": "object",
+        "title": "Workshift.Filter",
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "example": 100
+          },
+          "skip": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "order": {
+            "oneOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            ]
+          },
+          "where": {
+            "title": "Workshift.WhereFilter",
+            "type": "object",
+            "additionalProperties": true
+          },
+          "fields": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "boolean"
+                  },
+                  "name": {
+                    "type": "boolean"
+                  },
+                  "state": {
+                    "type": "boolean"
+                  }
+                },
+                "additionalProperties": false
+              },
+              {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "id",
+                    "name",
+                    "state"
+                  ],
+                  "example": "id"
+                },
+                "uniqueItems": true
+              }
+            ],
+            "title": "Workshift.Fields"
+          },
+          "include": {
+            "title": "Workshift.IncludeFilter",
+            "type": "array",
+            "items": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/Workshift.IncludeFilter.Items"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "x-typescript-type": "@loopback/repository#Filter<Workshift>"
+      }
+    }
+  }
+}
