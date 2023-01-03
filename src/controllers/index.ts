@@ -10,3 +10,5 @@ export * from './employee-attendance.controller';
 export * from './attendance-employee.controller';
 export * from './department-employee-positions.controller';
 export * from './employee-positions-department.controller';
+export * from './workshift-employee-positions.controller';
+export * from './employee-positions-workshift.controller';

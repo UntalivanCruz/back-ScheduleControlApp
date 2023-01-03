@@ -1,6 +1,7 @@
 import {Entity, model, property, hasMany, belongsTo} from '@loopback/repository';
 import {Employee} from './employee.model';
 import {Department} from './department.model';
+import {Workshift} from './workshift.model';
 
 @model()
 export class EmployeePositions extends Entity {
@@ -22,13 +23,6 @@ export class EmployeePositions extends Entity {
     required: true,
   })
   idDeparment: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  idShift: string;
-
   @property({
     type: 'boolean',
     default: true,
@@ -40,6 +34,9 @@ export class EmployeePositions extends Entity {
 
   @belongsTo(() => Department, {name: 'Department'})
   idDepartment: string;
+
+  @belongsTo(() => Workshift, {name: 'workshift'})
+  idWorkshift: string;
 
   constructor(data?: Partial<EmployeePositions>) {
     super(data);
