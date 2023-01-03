@@ -12,3 +12,5 @@ export * from './department-employee-positions.controller';
 export * from './employee-positions-department.controller';
 export * from './workshift-employee-positions.controller';
 export * from './employee-positions-workshift.controller';
+export * from './workshift-schedule.controller';
+export * from './schedule-workshift.controller';

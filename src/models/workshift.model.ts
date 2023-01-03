@@ -1,5 +1,6 @@
 import {Entity, model, property, hasMany} from '@loopback/repository';
 import {EmployeePositions} from './employee-positions.model';
+import {Schedule} from './schedule.model';
 
 @model()
 export class Workshift extends Entity {
@@ -24,6 +25,9 @@ export class Workshift extends Entity {
 
   @hasMany(() => EmployeePositions, {keyTo: 'idWorkshift'})
   employeePositions: EmployeePositions[];
+
+  @hasMany(() => Schedule, {keyTo: 'idWorkshift'})
+  schedules: Schedule[];
 
   constructor(data?: Partial<Workshift>) {
     super(data);
