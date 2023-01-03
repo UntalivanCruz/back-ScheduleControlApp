@@ -24,6 +24,6 @@ WORKDIR /app
 COPY --from=dependencies-prod /app/node_modules/ ./node_modules/
 COPY . .
 ENV PORT=${PORT} HOST=${HOST} DB_HOST=${DB_HOST} MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME} MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD} DB_NAME=${DB_NAME} DB_PORT=${DB_PORT} DB_PROTOCOL=${DB_PROTOCOL}
-RUN npm run build
+COPY --from=dev /app/dist/ ./dist/
 EXPOSE ${PORT}
 CMD [ "node","."]
