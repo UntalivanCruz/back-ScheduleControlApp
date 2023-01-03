@@ -3143,9 +3143,6 @@
           "name": {
             "type": "string"
           },
-          "idDeparment": {
-            "type": "string"
-          },
           "state": {
             "type": "boolean"
           },
@@ -3169,8 +3166,7 @@
           }
         },
         "required": [
-          "name",
-          "idDeparment"
+          "name"
         ],
         "additionalProperties": false,
         "x-typescript-type": "EmployeePositionsWithRelations"
@@ -3306,9 +3302,6 @@
           "name": {
             "type": "string"
           },
-          "idDeparment": {
-            "type": "string"
-          },
           "state": {
             "type": "boolean"
           },
@@ -3320,8 +3313,7 @@
           }
         },
         "required": [
-          "name",
-          "idDeparment"
+          "name"
         ],
         "additionalProperties": false
       },
@@ -3333,9 +3325,6 @@
           "name": {
             "type": "string"
           },
-          "idDeparment": {
-            "type": "string"
-          },
           "state": {
             "type": "boolean"
           },
@@ -3347,8 +3336,7 @@
           }
         },
         "required": [
-          "name",
-          "idDeparment"
+          "name"
         ],
         "additionalProperties": false,
         "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<EmployeePositions, 'id'>, 'idDepartment'>"
@@ -3362,9 +3350,6 @@
             "type": "string"
           },
           "name": {
-            "type": "string"
-          },
-          "idDeparment": {
             "type": "string"
           },
           "state": {
@@ -3571,9 +3556,6 @@
           "name": {
             "type": "string"
           },
-          "idDeparment": {
-            "type": "string"
-          },
           "state": {
             "type": "boolean"
           },
@@ -3585,8 +3567,7 @@
           }
         },
         "required": [
-          "name",
-          "idDeparment"
+          "name"
         ],
         "additionalProperties": false,
         "x-typescript-type": "Omit<EmployeePositions, 'id'>"
@@ -3721,9 +3702,6 @@
           "name": {
             "type": "string"
           },
-          "idDeparment": {
-            "type": "string"
-          },
           "state": {
             "type": "boolean"
           },
@@ -3735,8 +3713,7 @@
           }
         },
         "required": [
-          "name",
-          "idDeparment"
+          "name"
         ],
         "additionalProperties": false,
         "x-typescript-type": "@loopback/repository-json-schema#Optional<Omit<EmployeePositions, 'id'>, 'idWorkshift'>"
@@ -4451,9 +4428,6 @@
                   "name": {
                     "type": "boolean"
                   },
-                  "idDeparment": {
-                    "type": "boolean"
-                  },
                   "state": {
                     "type": "boolean"
                   },
@@ -4473,7 +4447,6 @@
                   "enum": [
                     "id",
                     "name",
-                    "idDeparment",
                     "state",
                     "idDepartment",
                     "idWorkshift"
@@ -4549,9 +4522,6 @@
                   "name": {
                     "type": "boolean"
                   },
-                  "idDeparment": {
-                    "type": "boolean"
-                  },
                   "state": {
                     "type": "boolean"
                   },
@@ -4571,7 +4541,6 @@
                   "enum": [
                     "id",
                     "name",
-                    "idDeparment",
                     "state",
                     "idDepartment",
                     "idWorkshift"
