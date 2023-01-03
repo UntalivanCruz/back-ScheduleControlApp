@@ -19,7 +19,7 @@ services:
     build:
       context: .
       target: ${STAGE}
-      dockerfile: Dockerfile
+      dockerfile: ./Dockerfile
     volumes:
         - .:/app/
         - /app/node_modules
@@ -29,14 +29,13 @@ services:
     environment:
       PORT: ${PORT}
       HOST: ${HOST}
-      URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${DB_HOST}:${DB_PORT}
       DB_HOST: ${DB_HOST}
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       DB_NAME: ${DB_NAME}
       DB_PORT: ${DB_PORT}
+      DB_PROTOCOL: ${DB_PROTOCOL}
     restart: always
-
 volumes:
   mongo-db:
     external: true
