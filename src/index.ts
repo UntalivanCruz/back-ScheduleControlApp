@@ -8,7 +8,8 @@ export async function main(options: ApplicationConfig = {}) {
   await app.start();
 
   const url = app.restServer.url;
-  console.log(`Server is running at ${url}`);
+  console.log(`Server is running at ${url}`)
+  console.log(process.env.DB_URL)
 
   return app;
 }
@@ -17,7 +18,7 @@ if (require.main === module) {
   // Run the application
   const config = {
     rest: {
-      port: +(process.env.PORT ?? 3000),
+      port: +(process.env.PORT ?? 3001),
       host: process.env.HOST,
       // The `gracePeriodForClose` provides a graceful close for http/https
       // servers with keep-alive clients. The default value is `Infinity`

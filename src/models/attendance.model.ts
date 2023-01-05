@@ -35,7 +35,7 @@ export class Attendance extends Entity {
     type: 'boolean',
     default: true,
   })
-  state?: boolean;
+  status?: boolean;
 
   @belongsTo(() => Employee, {name: 'Employee'})
   idEmployee: string;

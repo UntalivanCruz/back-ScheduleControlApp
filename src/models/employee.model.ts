@@ -49,7 +49,7 @@ export class Employee extends Entity {
     type: 'boolean',
     default: true,
   })
-  state?: boolean;
+  status?: boolean;
 
   @belongsTo(() => EmployeePositions, {name: 'EmployeePositions'})
   idEmployeePositions: string;

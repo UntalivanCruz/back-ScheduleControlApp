@@ -1,6 +1,6 @@
 {
   "name": "backend-schedule-control",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Backend Schedule Control Application",
   "keywords": [
     "loopback-application",

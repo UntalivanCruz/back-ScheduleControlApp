@@ -12,7 +12,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     #ports:
     #  - ${DB_PORT}:${DB_PORT}
-  app:
+  backend:
     depends_on:
       - db
     container_name: Backend
@@ -35,7 +35,25 @@ services:
       DB_NAME: ${DB_NAME}
       DB_PORT: ${DB_PORT}
       DB_PROTOCOL: ${DB_PROTOCOL}
+      DB_URL: ${DB_URL}
+    restart: always
+  frontend:
+    depends_on:
+      - backend
+    container_name: Frontend
+    build:
+      context: .
+      target: ${STAGE}
+      dockerfile: ../frontend-schedule-control/Dockerfile
+    volumes:
+      - ../frontend-schedule-control/:/app/
+    ports:
+      - 3000:3000
+    environment:
+      WATCHPACK_POLLING: true
+      REACT_APP_API_URL: ${REACT_APP_API_URL}
     restart: always
 volumes:
   mongo-db:
     external: true
+    

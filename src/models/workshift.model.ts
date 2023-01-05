@@ -21,7 +21,7 @@ export class Workshift extends Entity {
     type: 'boolean',
     default: true,
   })
-  state?: boolean;
+  status?: boolean;
 
   @hasMany(() => EmployeePositions, {keyTo: 'idWorkshift'})
   employeePositions: EmployeePositions[];

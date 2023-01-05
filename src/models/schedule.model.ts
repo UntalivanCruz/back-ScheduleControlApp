@@ -29,7 +29,7 @@ export class Schedule extends Entity {
     type: 'boolean',
     default: true,
   })
-  state?: boolean;
+  status?: boolean;
 
   @belongsTo(() => Workshift, {name: 'workshift'})
   idWorkshift: string;

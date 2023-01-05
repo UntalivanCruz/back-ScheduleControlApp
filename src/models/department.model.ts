@@ -20,7 +20,7 @@ export class Department extends Entity {
     type: 'boolean',
     default: true,
   })
-  state?: boolean;
+  status?: boolean;
 
   @hasMany(() => EmployeePositions, {keyTo: 'idDepartment'})
   employeePositions: EmployeePositions[];
