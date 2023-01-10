@@ -44,7 +44,8 @@ export class EmployeeController {
     })
     employee: Omit<Employee, 'id'>,
   ): Promise<Employee> {
-    return this.employeeRepository.create(employee);
+    const insert = await this.employeeRepository.create(employee);
+    return this.employeeRepository.findById(insert.id,{"include": [{"relation": "EmployeePositions"}]})
   }
 
   @get('/employees/count')
@@ -125,8 +126,9 @@ export class EmployeeController {
       },
     })
     employee: Employee,
-  ): Promise<void> {
+  ): Promise<Employee> {
     await this.employeeRepository.updateById(id, employee);
+    return this.employeeRepository.findById(id,{"include": [{"relation": "EmployeePositions"}]})
   }
 
   @put('/employees/{id}')

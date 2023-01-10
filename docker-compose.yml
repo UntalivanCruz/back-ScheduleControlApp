@@ -37,22 +37,7 @@ services:
       DB_PROTOCOL: ${DB_PROTOCOL}
       DB_URL: ${DB_URL}
     restart: always
-  frontend:
-    depends_on:
-      - backend
-    container_name: Frontend
-    build:
-      context: .
-      target: ${STAGE}
-      dockerfile: ../frontend-schedule-control/Dockerfile
-    volumes:
-      - ../frontend-schedule-control/:/app/
-    ports:
-      - 3000:3000
-    environment:
-      WATCHPACK_POLLING: true
-      REACT_APP_API_URL: ${REACT_APP_API_URL}
-    restart: always
+ 
 volumes:
   mongo-db:
     external: true

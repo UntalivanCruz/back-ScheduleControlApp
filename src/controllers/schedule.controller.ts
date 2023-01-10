@@ -44,7 +44,9 @@ export class ScheduleController {
     })
     schedule: Omit<Schedule, 'id'>,
   ): Promise<Schedule> {
-    return this.scheduleRepository.create(schedule);
+    const insert = await this.scheduleRepository.create(schedule);
+    return this.scheduleRepository.findById(insert.id,{'include':[{'relation': 'workshift'}]})
+
   }
 
   @get('/schedules/count')
@@ -125,8 +127,9 @@ export class ScheduleController {
       },
     })
     schedule: Schedule,
-  ): Promise<void> {
+  ): Promise<Schedule> {
     await this.scheduleRepository.updateById(id, schedule);
+    return this.scheduleRepository.findById(id,{'include':[{'relation': 'workshift'}]})
   }
 
   @put('/schedules/{id}')
