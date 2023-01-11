@@ -14,3 +14,4 @@ export * from './workshift-employee-positions.controller';
 export * from './employee-positions-workshift.controller';
 export * from './workshift-schedule.controller';
 export * from './schedule-workshift.controller';
+export * from './user.controller';

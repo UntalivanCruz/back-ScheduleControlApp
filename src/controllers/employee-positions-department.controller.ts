@@ -11,7 +11,9 @@ import {
   Department,
 } from '../models';
 import {EmployeePositionsRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate('jwt')
 export class EmployeePositionsDepartmentController {
   constructor(
     @repository(EmployeePositionsRepository)

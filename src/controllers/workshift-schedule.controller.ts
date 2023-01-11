@@ -20,7 +20,9 @@ import {
   Schedule,
 } from '../models';
 import {WorkshiftRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate('jwt')
 export class WorkshiftScheduleController {
   constructor(
     @repository(WorkshiftRepository) protected workshiftRepository: WorkshiftRepository,

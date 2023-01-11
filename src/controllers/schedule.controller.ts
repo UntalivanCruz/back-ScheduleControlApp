@@ -19,7 +19,9 @@ import {
 } from '@loopback/rest';
 import {Schedule} from '../models';
 import {ScheduleRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate('jwt')
 export class ScheduleController {
   constructor(
     @repository(ScheduleRepository)

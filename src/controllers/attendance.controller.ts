@@ -19,7 +19,9 @@ import {
 } from '@loopback/rest';
 import {Attendance} from '../models';
 import {AttendanceRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate('jwt')
 export class AttendanceController {
   constructor(
     @repository(AttendanceRepository)

@@ -20,7 +20,9 @@ import {
   Attendance,
 } from '../models';
 import {EmployeeRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate('jwt')
 export class EmployeeAttendanceController {
   constructor(
     @repository(EmployeeRepository) protected employeeRepository: EmployeeRepository,

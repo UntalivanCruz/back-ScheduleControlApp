@@ -9,6 +9,13 @@ import {RestApplication} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
 import {MySequence} from './sequence';
+import {AuthenticationComponent} from '@loopback/authentication';
+import {
+  JWTAuthenticationComponent,
+  SECURITY_SCHEME_SPEC,
+  UserServiceBindings,
+} from '@loopback/authentication-jwt';
+import {ConnDataSource} from './datasources';
 
 export {ApplicationConfig};
 
@@ -40,5 +47,14 @@ export class BackendScheduleControlApplication extends BootMixin(
         nested: true,
       },
     };
+
+        //...
+    // ------ ADD SNIPPET AT THE BOTTOM ---------
+    // Mount authentication system
+    this.component(AuthenticationComponent);
+    // Mount jwt component
+    this.component(JWTAuthenticationComponent);
+    // Bind datasource
+    this.dataSource(ConnDataSource, UserServiceBindings.DATASOURCE_NAME);
   }
 }

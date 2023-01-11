@@ -11,7 +11,9 @@ import {
   Workshift,
 } from '../models';
 import {ScheduleRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate('jwt')
 export class ScheduleWorkshiftController {
   constructor(
     @repository(ScheduleRepository)

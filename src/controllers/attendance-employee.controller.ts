@@ -11,7 +11,9 @@ import {
   Employee,
 } from '../models';
 import {AttendanceRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate('jwt')
 export class AttendanceEmployeeController {
   constructor(
     @repository(AttendanceRepository)

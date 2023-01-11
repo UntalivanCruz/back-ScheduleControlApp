@@ -19,7 +19,9 @@ import {
 } from '@loopback/rest';
 import {Workshift} from '../models';
 import {WorkshiftRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate('jwt')
 export class WorkshiftController {
   constructor(
     @repository(WorkshiftRepository)

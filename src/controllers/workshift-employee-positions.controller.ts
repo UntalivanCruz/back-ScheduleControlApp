@@ -20,7 +20,9 @@ import {
   EmployeePositions,
 } from '../models';
 import {WorkshiftRepository} from '../repositories';
+import {authenticate} from '@loopback/authentication';
 
+@authenticate('jwt')
 export class WorkshiftEmployeePositionsController {
   constructor(
     @repository(WorkshiftRepository) protected workshiftRepository: WorkshiftRepository,
